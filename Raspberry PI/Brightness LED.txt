@@ -1,0 +1,19 @@
+import RPi.GPIO as g
+from time import sleep
+
+g.setmode(g,BOARD)
+g.setup(21,g.OUT)
+
+p=g.PWM(21,50)
+p.start(0)
+try:
+  while True:
+        for i in range(100):
+             p.ChangeDutyCycle(i)
+             sleep(0.02)
+        for i in range(100):
+             p.ChangeDutyCycle(100-i)
+             sleep(0.02)
+except KeyboardInterrupt:
+  p.stop()
+  g.cleanup()

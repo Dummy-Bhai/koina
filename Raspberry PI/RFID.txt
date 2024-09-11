@@ -1,0 +1,15 @@
+import serial
+
+data=serial.Serial(port='/dev/ttyUSB0',baudrate=9600,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS)
+
+try:
+  while 1:
+     print('Place the card')
+     x=data.read(12)
+     if x=="Data":
+        print('Access Granted')
+     else:
+        print('Access Denied')
+except KeyboardInterrupt:
+  data.close()
+  

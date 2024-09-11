@@ -1,0 +1,13 @@
+from time import sleep
+
+import tm1637
+
+display=tm1637.TM1637(CLK=21,DIO=20,brightness=1.0)
+
+try:
+  print "Start Clock in Background"
+  display.StartClock(military_time=True)
+  sleep(5)
+  display.StopClock()
+except KeyboardInterrupt:
+  display.cleanup()
